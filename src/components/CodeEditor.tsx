@@ -85,8 +85,9 @@ ReactDOM.render(<Counter />, document.getElementById('root'));`);
 
   const [previewKey, setPreviewKey] = useState(0);
 
-  const generatePreview = () => {
-    const preview = `
+  // Generate preview HTML without causing re-renders
+  const getPreviewHTML = () => {
+    return `
       ${htmlCode}
       <style>${cssCode}</style>
       <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -95,11 +96,13 @@ ReactDOM.render(<Counter />, document.getElementById('root'));`);
         ${jsCode}
       </script>
     `;
-    setPreviewKey(prev => prev + 1);
-    return preview;
   };
 
   const runCode = () => {
+    setPreviewKey(prev => prev + 1);
+  };
+
+  const refreshPreview = () => {
     setPreviewKey(prev => prev + 1);
   };
 
@@ -182,7 +185,7 @@ ReactDOM.render(<Counter />, document.getElementById('root'));`);
             <Button 
               variant="ghost" 
               size="sm"
-              onClick={() => setPreviewKey(prev => prev + 1)}
+              onClick={refreshPreview}
               className="text-white hover:bg-gray-800"
             >
               <RotateCcw size={16} />
@@ -191,7 +194,7 @@ ReactDOM.render(<Counter />, document.getElementById('root'));`);
           <div className="flex-1 bg-white">
             <iframe
               key={previewKey}
-              srcDoc={generatePreview()}
+              srcDoc={getPreviewHTML()}
               className="w-full h-full border-none"
               title="Live Preview"
             />
