@@ -35,6 +35,12 @@ const CodeEditor = ({ activeTab, setActiveTab }) => {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+}
+
+.container:hover {
+  transform: scale(1.02);
 }
 
 .counter {
@@ -42,6 +48,7 @@ const CodeEditor = ({ activeTab, setActiveTab }) => {
   font-weight: bold;
   color: #333;
   margin: 1rem 0;
+  transition: color 0.3s ease;
 }
 
 button {
@@ -53,11 +60,18 @@ button {
   font-size: 1rem;
   cursor: pointer;
   margin: 0 8px;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  transform: translateY(0);
 }
 
 button:hover {
   background: #5a6fd8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
 }`);
 
   const [jsCode, setJsCode] = useState(`function Counter() {
@@ -104,35 +118,39 @@ ReactDOM.render(<Counter />, document.getElementById('root'));`);
   };
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-black">
       <CodeEditorHeader onRunCode={runCode} />
 
-      <div className="flex-1">
+      <div className="flex-1 min-h-0">
         <ResizablePanelGroup direction="horizontal" className="h-full">
           {/* Code Editor Panel */}
-          <ResizablePanel defaultSize={50} minSize={30}>
-            <CodeTabs
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              htmlCode={htmlCode}
-              setHtmlCode={setHtmlCode}
-              cssCode={cssCode}
-              setCssCode={setCssCode}
-              jsCode={jsCode}
-              setJsCode={setJsCode}
-            />
+          <ResizablePanel defaultSize={50} minSize={25} className="min-w-0">
+            <div className="h-full flex flex-col bg-gray-900">
+              <CodeTabs
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                htmlCode={htmlCode}
+                setHtmlCode={setHtmlCode}
+                cssCode={cssCode}
+                setCssCode={setCssCode}
+                jsCode={jsCode}
+                setJsCode={setJsCode}
+              />
+            </div>
           </ResizablePanel>
           
-          <ResizableHandle withHandle />
+          <ResizableHandle withHandle className="w-2 bg-gray-800 hover:bg-gray-700 transition-colors duration-200" />
           
           {/* Live Preview Panel */}
-          <ResizablePanel defaultSize={50} minSize={30}>
-            <div className="flex flex-col h-full">
+          <ResizablePanel defaultSize={50} minSize={25} className="min-w-0">
+            <div className="flex flex-col h-full bg-gray-900">
               <PreviewHeader onRefreshPreview={refreshPreview} />
-              <LivePreview 
-                previewHTML={getPreviewHTML()}
-                previewKey={previewKey}
-              />
+              <div className="flex-1 min-h-0">
+                <LivePreview 
+                  previewHTML={getPreviewHTML()}
+                  previewKey={previewKey}
+                />
+              </div>
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
