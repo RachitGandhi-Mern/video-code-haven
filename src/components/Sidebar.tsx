@@ -9,7 +9,7 @@ interface SidebarProps {
   setSelectedLanguage: (language: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ 
+const Sidebar: React.FC<SidebarProps> =({ 
   isOpen, 
   selectedLanguage, 
   setSelectedLanguage 
@@ -41,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   if (!isOpen) return null;
 
   return (
-    <aside className="fixed left-0 top-16 bottom-0 w-80 bg-gray-900 border-r border-gray-800 overflow-y-auto z-40">
+    <aside className="fixed left-0 top-16 bottom-0 w-80 bg-black border-r border-gray-900 overflow-y-auto z-40">
       <div className="p-6">
         {/* Filter Header */}
         <div className="flex items-center space-x-2 mb-6">
@@ -59,10 +59,10 @@ const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={lang.name}
                 onClick={() => setSelectedLanguage(lang.name.toLowerCase())}
-                className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 hover:bg-gray-800 ${
+                className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 hover:bg-gray-950 ${
                   selectedLanguage === lang.name.toLowerCase() 
-                    ? 'bg-blue-900/30 border border-blue-500/30' 
-                    : 'bg-gray-800/50'
+                    ? 'bg-blue-950/30 border border-blue-500/30' 
+                    : 'bg-gray-950/50'
                 }`}
               >
                 <div className="flex items-center space-x-3">
@@ -84,7 +84,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {channels.map((channel) => (
               <div
                 key={channel.name}
-                className="flex items-center justify-between p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors cursor-pointer"
+                className="flex items-center justify-between p-3 rounded-lg bg-gray-950/50 hover:bg-gray-950 transition-colors cursor-pointer"
               >
                 <div className="flex items-center space-x-3">
                   <User size={16} className="text-gray-400" />
@@ -105,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             {playlists.map((playlist) => (
               <div
                 key={playlist.name}
-                className="flex items-center justify-between p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors cursor-pointer"
+                className="flex items-center justify-between p-3 rounded-lg bg-gray-950/50 hover:bg-gray-950 transition-colors cursor-pointer"
               >
                 <div className="flex items-center space-x-3">
                   <Hash size={16} className="text-gray-400" />

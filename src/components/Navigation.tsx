@@ -18,7 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({
   setSidebarOpen,
 }) => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-900">
       <div className="flex items-center justify-between px-6 py-3">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({
             variant="ghost"
             size="sm"
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="text-white hover:bg-gray-800"
+            className="text-white hover:bg-gray-900"
           >
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </Button>
@@ -47,20 +47,20 @@ const Navigation: React.FC<NavigationProps> = ({
               placeholder="Search videos, courses, tutorials..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-blue-500"
+              className="pl-10 bg-gray-950 border-gray-800 text-white placeholder-gray-400 focus:border-blue-500"
             />
           </div>
         </div>
 
         {/* Right Section */}
         <div className="flex items-center space-x-3">
-          <Button variant="outline" size="sm" className="border-gray-700 text-white hover:bg-gray-800">
+          <Button variant="outline" size="sm" className="border-gray-800 text-white hover:bg-gray-900">
             Login
           </Button>
           <Button 
             variant="ghost" 
             size="sm"
-            className="text-white hover:bg-gray-800 rounded-full p-2"
+            className="text-white hover:bg-gray-900 rounded-full p-2"
           >
             <User size={20} />
           </Button>

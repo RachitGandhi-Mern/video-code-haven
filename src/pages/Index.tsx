@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, User, Settings, Play, Code, Eye, Filter, X } from 'lucide-react';
 import VideoPlayer from '../components/VideoPlayer';
 import CodeEditor from '../components/CodeEditor';
@@ -12,8 +12,13 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('html');
 
+  // Apply dark theme by default
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Navigation */}
       <Navigation 
         searchQuery={searchQuery}
@@ -34,7 +39,7 @@ const Index = () => {
         <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-80' : 'ml-0'}`}>
           <div className="h-full flex flex-col lg:flex-row">
             {/* Video Section */}
-            <div className="lg:w-1/2 p-6 border-r border-gray-800">
+            <div className="lg:w-1/2 p-6 border-r border-gray-900">
               <VideoPlayer />
             </div>
 
